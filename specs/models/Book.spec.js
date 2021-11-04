@@ -1,9 +1,10 @@
-const { expect, factory, pending } = require("../helpers");
+const { pending } = require("../helpers");
+const { Book } = Models;
 const { Association, DataTypes } = require("sequelize");
 
-describe("ModelName", () => {
-  BookModel = factory.factories.Book.Model;
-  const { tableName, tableAttributes, associations } = BookModel;
+describe("Book", () => {
+  BookModel = new Book();
+  const { tableName, tableAttributes, associations } = BookModel.constructor;
 
   beforeEach(async () => {
     subject = await factory.create("Book");
@@ -42,14 +43,13 @@ describe("ModelName", () => {
     });
 
     describe("is expected to have properties", () => {
-      it('title', () => {
-        expect(subject)
-          .to.have.property('title').to.be.a('string')
+      it("title", () => {
+        expect(subject).to.have.property("title").to.be.a("string");
       });
     });
 
     // describe("is expected to have association accessors", () => {
-    //   it.only("for the <AssociatedModel> association", () => {
+    //   it("for the <AssociatedModel> association", () => {
     //     // expect(subject)
     //     //   .to.respondTo('get<AssociatedModel>')
     //     //   .and.respondTo('set<AssociatedModel>')
