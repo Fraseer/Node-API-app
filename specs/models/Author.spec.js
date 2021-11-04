@@ -1,34 +1,34 @@
-const { Book } = Models;
+const { Author } = Models;
 const { Association, DataTypes } = require("sequelize");
 
-describe("Book", () => {
-  BookModel = new Book();
-  const { tableName, tableAttributes, associations } = BookModel.constructor;
+describe("Author", () => {
+  AuthorModel = new Author();
+  const { tableName, tableAttributes, associations } = AuthorModel.constructor;
 
   beforeEach(async () => {
-    subject = await factory.create("Book");
+    subject = await factory.create("Author");
   });
 
   describe("Model", () => {
-    it("is expected to have table name Books", () => {
-      expect(tableName).to.equal("Books");
+    it("is expected to have table name Authors", () => {
+      expect(tableName).to.equal("Authors");
     });
 
     describe("is expected to have property:", () => {
-      it("is expected to have property title:string", () => {
+      it("is expected to have property name:string", () => {
         expect(tableAttributes)
-          .to.have.own.property("title")
+          .to.have.own.property("name")
           .that.has.property("type")
           .to.be.instanceOf(DataTypes.STRING);
       });
     });
 
     describe("is expected to have associations", () => {
-      it("is expected to belong to author", () => {
+      it("is expected to have many books", () => {
         expect(associations)
-          .to.have.own.property("Author")
-          .to.be.instanceOf(Association.BelongsTo)
-          .that.has.property('foreignKey', 'AuthorId')
+          .to.have.own.property("Books")
+          .to.be.instanceOf(Association.HasMany)
+          .that.has.property("foreignKey", "AuthorId");
       });
     });
   });
@@ -36,13 +36,13 @@ describe("Book", () => {
   describe("Instance", () => {
     it("is expected to have a valid factory", () => {
       expect(subject).to.include({
-        title: "My Awesome First Novel",
+        name: "Fraser Hughes",
       });
     });
 
     describe("is expected to have properties", () => {
-      it("title", () => {
-        expect(subject).to.have.property("title").to.be.a("string");
+      it("name", () => {
+        expect(subject).to.have.property("name").to.be.a("string");
       });
     });
 

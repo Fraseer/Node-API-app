@@ -5,7 +5,8 @@ before((done) => {
 });
 
 beforeEach(async () => {
-  await factory.create("Book");
+  let author = await factory.create("Author");
+  await factory.create("Book", { AuthorId: author.id });
 });
 
 afterEach(async () => {
@@ -17,8 +18,8 @@ describe("GET /api/books", () => {
     response = await request.get("/api/books");
   });
 
-  it("is expected to respond with status 200", () => {
-    debugger
+  it.only("is expected to respond with status 200", () => {
+
     expect(response.status).to.equal(200);
   });
 

@@ -3,17 +3,16 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Book extends Model {
- 
+  class Author extends Model {
     static associate(models) {
-      Book.belongsTo(models.Author)
+      Author.hasMany(models.Book)
     }
   };
-  Book.init({
-    title: DataTypes.STRING
+  Author.init({
+    name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Book',
+    modelName: 'Author',
   });
-  return Book;
+  return Author;
 };
