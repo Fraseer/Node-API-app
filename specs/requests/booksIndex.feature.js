@@ -18,7 +18,7 @@ describe("GET /api/books", () => {
     response = await request.get("/api/books");
   });
 
-  it.only("is expected to respond with status 200", () => {
+  it("is expected to respond with status 200", () => {
 
     expect(response.status).to.equal(200);
   });

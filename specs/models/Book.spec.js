@@ -26,7 +26,7 @@ describe("Book", () => {
     describe("is expected to have associations", () => {
       it("is expected to belong to author", () => {
         expect(associations)
-          .to.have.own.property("Author")
+          .to.have.own.property("author")
           .to.be.instanceOf(Association.BelongsTo)
           .that.has.property('foreignKey', 'AuthorId')
       });
