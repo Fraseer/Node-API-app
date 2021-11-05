@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     return queryInterface.addColumn("Books", "AuthorId", {
-      type: Sequelize.INTERGER,
+      type: Sequelize.INTEGER,
       references: {
         model: "Authors",
         as: "author",
